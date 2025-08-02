@@ -44,6 +44,11 @@
 - **-10%** задержки (latency)
 - **Стабильная работа** без деградации производительности
 
+- <img width="433" height="231" alt="image" src="https://github.com/user-attachments/assets/b68d06b9-93b6-4625-b675-45e055f02c07" />
+
+<img width="477" height="263" alt="image" src="https://github.com/user-attachments/assets/7fb8254c-affd-4626-a882-994dd6e21a30" />
+
+
 ## Принцип работы
 
 1. Collector собирает метрики производительности PostgreSQL
