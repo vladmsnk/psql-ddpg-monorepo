@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package collector;
+
+option go_package = "pkg/pb";
+
+service Collector {
+  //Collects PostgreSQL knobs
+  rpc CollectKnobs(CollectKnobsRequest) returns (CollectKnobsResponse);
+  rpc CollectInternalMetrics(CollectInternalMetricsRequest) returns (CollectInternalMetricsResponse);
+  rpc CollectExternalMetrics(CollectExternalMetricsRequest) returns (CollectExternalMetricsResponse);
+  rpc InitLoad(InitLoadRequest) returns (InitLoadResponse);
+  // Применяет параметры конфигурации
+  rpc SetKnobs(SetKnobsRequest) returns (SetKnobsResponse);
+}
+
+message CollectKnobsRequest {}
+
+message CollectKnobsResponse {
+  message Knob {
+    string name = 1;
+    float min_value = 2;
+    float max_value = 3;
+
+    oneof value {
+      string str_value = 4;
+      float float_value = 5;
+      bool bool_value = 6;
+    }
+
+  }
+  repeated Knob knobs = 1;
+}
+
+message CollectInternalMetricsRequest {}
+
+message CollectInternalMetricsResponse {
+  message Metric {
+    string name = 1;
+
+    oneof value {
+      string str_value = 2;
+      float float_value = 3;
+      bool bool_value = 4;
+    }
+
+    string scope = 5;
+  }
+  repeated Metric metrics = 1;
+}
+
+message CollectExternalMetricsRequest {}
+
+message CollectExternalMetricsResponse {
+  float tps = 1;
+  float latency = 2;
+}
+
+message InitLoadRequest {
+
+}
+
+message InitLoadResponse {}
+
+message SetKnobsRequest {
+  message Knob {
+    string name = 1;
+    float value = 2;
+  }
+
+  repeated Knob knobs = 1;
+}
+
+message SetKnobsResponse {
+
+}

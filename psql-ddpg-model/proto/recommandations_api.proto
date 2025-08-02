@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package collector;
+
+option go_package = "server";
+
+service RecommendationsAPI {
+  rpc GetStates(GetStatesRequest) returns(GetStatesResponse);
+  rpc ApplyActions(ApplyActionsRequest) returns(ApplyActionsResponse);
+  rpc GetRewardMetrics(GetRewardMetricsRequest) returns (GetRewardMetricsResponse);
+  rpc InitEnvironment(InitEnvironmentRequest) returns (InitEnvironmentResponse);
+
+  rpc GetRecommendations(GetRecommendationsRequest) returns (GetRecommendationsResponse);
+}
+
+message GetStatesRequest {
+  string instance_name = 1;
+}
+
+message GetStatesResponse {
+  message Metric{
+    float value = 1;
+  }
+
+  repeated Metric Metrics = 1;
+}
+
+message ApplyActionsRequest {
+  message Knob {
+    string name = 1;
+    float value = 2;
+  }
+
+  string instance_name = 1;
+  Knob knobs = 2;
+}
+
+message ApplyActionsResponse {}
+
+message GetRewardMetricsRequest {
+  string instance_name = 1;
+}
+
+message GetRewardMetricsResponse {
+  float latency = 1;
+  float tps = 2;
+}
+
+message InitEnvironmentRequest {
+  string instance_name = 1;
+}
+
+message InitEnvironmentResponse {}
+
+message GetRecommendationsRequest {
+  message Knob {
+    string name = 1;
+    float value = 2;
+  }
+
+  string instance_name = 1;
+  repeated Knob knobs = 2;
+}
+
+message GetRecommendationsResponse {
+
+}

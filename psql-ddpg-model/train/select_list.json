@@ -1,0 +1,8 @@
+[
+    "work_mem",
+    "maintenance_work_mem",
+    "checkpoint_completion_target",
+    "effective_cache_size",
+    "wal_writer_delay",
+    "checkpoint_timeout"
+]

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package environment;
+
+option go_package = "pkg/pb";
+
+service Environment {
+  rpc GetStates(GetStatesRequest) returns(GetStatesResponse);
+  rpc ApplyActions(ApplyActionsRequest) returns(ApplyActionsResponse);
+  rpc GetRewardMetrics(GetRewardMetricsRequest) returns (GetRewardMetricsResponse);
+  rpc InitEnvironment(InitEnvironmentRequest) returns (InitEnvironmentResponse);
+  rpc GetActionState(GetActionStateRequest) returns(GetActionStateResponse);
+}
+
+message GetStatesRequest {
+  string instance_name = 1;
+}
+
+message GetStatesResponse {
+  repeated float metrics = 1;
+}
+
+message ApplyActionsRequest {
+  message Action {
+    string name = 1;
+    float value = 2;
+  }
+
+  string instance_name = 1;
+  repeated Action actions = 2;
+}
+
+message ApplyActionsResponse {}
+
+message GetRewardMetricsRequest {
+  string instance_name = 1;
+}
+
+message GetRewardMetricsResponse {
+  float latency = 1;
+  float tps = 2;
+}
+
+message InitEnvironmentRequest {
+  string instance_name = 1;
+}
+
+message InitEnvironmentResponse {}
+
+
+message GetActionStateRequest {
+  string instance_name = 1;
+  repeated string knobs = 2;
+}
+
+message GetActionStateResponse {
+  message Knob {
+    string name = 1;
+    float value = 2;
+    float min_value = 3;
+    float max_value = 4;
+  }
+  repeated Knob knobs = 1;
+}

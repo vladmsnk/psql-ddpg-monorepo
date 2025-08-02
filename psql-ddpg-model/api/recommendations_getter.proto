@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package collector;
+
+option go_package = "server";
+
+service RecommendationsGetter {
+  rpc GetRecommendations(GetRecommendationsRequest) returns(GetRecommendationsResponse);
+}
+
+
+message GetRecommendationsRequest {
+}
+
+message GetRecommendationsResponse {
+    message Knob {
+        string name = 1;
+        float value = 2;
+      }
+    
+      string instance_name = 1;
+      repeated Knob knobs = 2;
+}

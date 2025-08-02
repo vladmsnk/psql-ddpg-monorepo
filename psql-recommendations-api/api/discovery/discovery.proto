@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package discovery;
+
+option go_package = "pkg/pb";
+
+service Discovery {
+  rpc RegisterInstance(RegisterInstanceRequest) returns(RegisterInstanceResponse);
+  rpc GetInstanceInfo(GetInstanceInfoRequest) returns(GetInstanceInfoResponse);
+}
+
+message RegisterInstanceRequest {
+  string instance_name = 1;
+  bytes config = 2;
+}
+
+message RegisterInstanceResponse {
+  string container_id = 1;
+  string instance_name = 2;
+  string host = 3;
+  int64 port = 4;
+}
+
+message GetInstanceInfoRequest {
+  string instance_name = 1;
+}
+
+message GetInstanceInfoResponse {
+  string container_id = 1;
+  string instance_name = 2;
+  string host = 3;
+  int64 port = 4;
+}

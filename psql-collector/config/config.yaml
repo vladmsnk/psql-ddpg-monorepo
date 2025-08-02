@@ -1,0 +1,12 @@
+grpc:
+  host: ""
+  port: 7002
+pgbench:
+  num_of_clients: 10
+  num_of_threads: 2
+  duration: 30
+  database: "postgres"
+  partitions: 0 #default
+  no_vacuum: false #default
+  scale: 0 #default
+  foreign_keys: false #default

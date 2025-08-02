@@ -1,0 +1,7 @@
+host: "postgresdb"
+port: 5432
+user: "user"
+password: "password"
+database: "postgres"
+container_name: "postgresdb"
+sslmode: "disable"
